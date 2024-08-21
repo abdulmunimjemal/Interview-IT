@@ -1,0 +1,20 @@
+**Transcribed User Input:**
+    ```
+    {user_input}
+    ```
+
+**Current Code Snapshot:**
+    ```
+    {code_snapshot}
+    ```
+
+Elapsed Time: `{time_elapsed}` minutes
+
+---
+
+**Instructions:**
+
+- **Completion Check:** Review the user's transcribed input and the current code snapshot to determine if they have completed the task.
+- **End of Interview:**
+  - **If the user indicates completion:** Follow the provided instructions to conclude the interview, offering feedback and summarizing their performance.
+  - **If time has run out:** First, politely inform the user that the allotted time has expired and proceed to wrap up the interview as per the guidelines.
