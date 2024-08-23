@@ -12,7 +12,8 @@ load_dotenv()
 app = FastAPI()
 templates = Jinja2Templates(directory="audio_experiments/templates")
 
-DG_API_KEY = "4b66499be18ed3768d51d5f5e4d3fbec68b003e9"
+DG_API_KEY = "4b66499be18ed3768d51d5f5e4d3fbec68b003e9" # invalidated after the experiment,
+# use environment variables later
 dg_client = Deepgram(DG_API_KEY)
 
 BUFFER_SIZE = 1024 * 8  # 8 KB buffer size
@@ -57,7 +58,14 @@ async def process_audio(fast_socket: WebSocket):
 
 async def connect_to_deepgram(transcript_received_handler: Callable[[Dict], None]):
     try:
-        socket = await dg_client.transcription.live({'punctuate': True, 'interim_results': False})
+        socket = await dg_client.transcription.live(
+            {'punctuate': True, 'interim_results': False,
+             'language': 'en-US',
+             'smart_format': True,
+             'endpointing': 100,
+             'no_delay': True,}
+             
+            )
         socket.registerHandler(socket.event.CLOSE, lambda c: print(f'Connection closed with code {c}.'))
         socket.registerHandler(socket.event.TRANSCRIPT_RECEIVED, transcript_received_handler)
 
