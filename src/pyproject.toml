@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "interview it (web app)"
+version = "1.0.0"
+description = "Interview IT Web App"
+authors = ["Abdulmunim <66489217+abdulmunimjemal@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+fastcrud = "^0.14.0"
+fastapi = "^0.95.1"
+uvicorn = "^0.21.1"
+pydantic = "^2.1.1"
+sqlalchemy = "^2.0.18"
+passlib = "^1.7.4"
+bcrypt = "^4.0.1"
+python-jose = "^3.3.0"
+oauthlib = "^3.2.2"
+httpx = "^0.24.0"
+fastapi-users = "^9.2.5"  
+databases = "^0.6.2" 
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

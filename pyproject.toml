@@ -5,6 +5,7 @@ description = "AI Based Interview Platform for IT Sector"
 authors = ["Abdulmunim <66489217+abdulmunimjemal@users.noreply.github.com>"]
 license = "Custom \"Read-Only\" License"
 readme = "README.md"
+packages = [ {include = 'src'} ]
 
 [tool.poetry.dependencies]
 python = "^3.11"
