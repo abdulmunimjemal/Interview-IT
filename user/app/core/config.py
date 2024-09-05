@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     FIREBASE_APP_ID: str
     FIREBASE_MEASUREMENT_ID: str
     FIREBASE_SERVICE_ACCOUNT_KEY_PATH: str
+    FIREBASE_DATABASE_URL: str = None
     JWT_SECRET_KEY: str = "placeholder"
     JWT_ALGORITHM: str = "HS256"
     
