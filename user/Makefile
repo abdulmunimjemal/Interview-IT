@@ -7,7 +7,7 @@ install: pyproject.toml
 	$(POETRY) install
 
 lint:
-	$(POETRY) run flake8 app tests
+	$(POETRY) run flake8 app tests || (echo "Linting failed!" && exit 1)
 
 mypy:
 	$(POETRY) run mypy app tests

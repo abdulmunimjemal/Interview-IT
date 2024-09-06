@@ -1,13 +1,14 @@
-from fastapi import Depends, HTTPException, status
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from firebase_admin import auth
+from fastapi import HTTPException
+from fastapi.security import HTTPBearer
 from jose import jwt, JWTError
 from app.core.config import settings
 
 security = HTTPBearer()
 
+
 def create_access_token(data: dict):
     return jwt.encode(data, settings.JWT_SECRET_KEY, algorithm=settings.JWT_ALGORITHM)
+
 
 async def verify_token(token: str):
     try:

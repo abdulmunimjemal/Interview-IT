@@ -6,6 +6,7 @@ from app.core.security import create_access_token, verify_token
 router = APIRouter()
 firebase_service = FirebaseService()
 
+
 @router.post("/register")
 async def register_user(user: UserCreate):
     try:
@@ -13,6 +14,7 @@ async def register_user(user: UserCreate):
         return {"success": True, "message": "User registered successfully. A verification email has been sent."}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
 
 @router.post("/login")
 async def login_user(user: UserLogin):
@@ -25,6 +27,7 @@ async def login_user(user: UserLogin):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
+
 @router.post("/refresh-token")
 async def refresh_token(refresh_token: str):
     try:
@@ -32,6 +35,7 @@ async def refresh_token(refresh_token: str):
         return {"success": True, "access_token": new_token}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
 
 @router.delete("/delete-user")
 async def delete_user(user=Depends(verify_token)):
@@ -51,6 +55,7 @@ async def change_password(new_password: str, user=Depends(verify_token)):
         return {"success": True, "message": "Password changed successfully"}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
 
 @router.get("/check-email-verification")
 async def check_email_verification(user=Depends(verify_token)):

@@ -1,5 +1,6 @@
 from pydantic_settings import BaseSettings
 
+
 class Settings(BaseSettings):
     APP_NAME: str = "User Management Microservice"
     VERSION: str = "0.1.0"
@@ -15,15 +16,15 @@ class Settings(BaseSettings):
     FIREBASE_DATABASE_URL: str = ""
     JWT_SECRET_KEY: str = "placeholder"
     JWT_ALGORITHM: str = "HS256"
-    
+
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"
-    
+
     def __init__(self):
         super().__init__()
         self.check_required_settings()
-    
+
     def check_required_settings(self):
         if not self.FIREBASE_API_KEY:
             raise Exception("FIREBASE_API_KEY is required")
@@ -45,5 +46,6 @@ class Settings(BaseSettings):
             raise Exception("JWT_SECRET_KEY is required")
         if not self.JWT_ALGORITHM:
             raise Exception("JWT_ALGORITHM is required")
+
 
 settings = Settings()

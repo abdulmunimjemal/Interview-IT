@@ -1,7 +1,8 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from app.core.security import verify_token
 
 router = APIRouter()
+
 
 @router.post("/")
 async def validate_token(token: str):

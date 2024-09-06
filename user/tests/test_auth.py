@@ -15,6 +15,7 @@ test_password = "testpassword123"
 new_password = "newpassword123"
 created_user_tokens: list[str] = []
 
+
 @pytest.fixture(scope="module", autouse=True)
 def setup_teardown():
     # Teardown logic: delete test users after all tests run
@@ -29,10 +30,12 @@ def test_register_user():
     assert response.status_code == 200
     assert "verification email has been sent" in response.json()["message"]
 
+
 def test_login_user_unverified():
     response = client.post("/auth/login", json={"email": test_emails[0], "password": test_password})
     assert response.status_code == 403
     assert "Email not verified" in response.json()["detail"]
+
 
 def test_register_and_check_verification():
     # Register a new user for verification test
@@ -43,6 +46,7 @@ def test_register_and_check_verification():
     # Login to get access token
     login_response = client.post("/auth/login", json={"email": test_emails[1], "password": test_password})
     assert login_response.status_code == 403  # Email is not verified
+
 
 def test_change_password():
     # Register a new user for password change test
@@ -57,14 +61,15 @@ def test_change_password():
 
     # Change password using the token
     response = client.post(
-        "/auth/change-password", 
-        headers={"Authorization": f"Bearer {login_response.json().get('access_token', '')}"}, 
+        "/auth/change-password",
+        headers={"Authorization": f"Bearer {login_response.json().get('access_token', '')}"},
         json={"new_password": new_password}
     )
     assert response.status_code == 200
     assert response.json()["message"] == "Password changed successfully"
 
     created_user_tokens.append(login_response.json().get('access_token'))
+
 
 def test_delete_user():
     # Register and login a new user for deletion
