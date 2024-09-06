@@ -13,7 +13,7 @@ test_emails = [
 ]
 test_password = "testpassword123"
 new_password = "newpassword123"
-created_user_tokens = []
+created_user_tokens: list[str] = []
 
 @pytest.fixture(scope="module", autouse=True)
 def setup_teardown():
