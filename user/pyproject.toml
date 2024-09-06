@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "interviewit user microservice"
+version = "0.1.0"
+description = "This is a user management microservice for interview it."
+authors = ["Abdulmunim <66489217+abdulmunimjemal@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.112.3"
+uvicorn = {extras = ["standard"], version = "^0.30.6"}
+pyrebase4 = "^4.8.0"
+firebase-admin = "^6.5.0"
+requests = "^2.32.3"
+pydantic-settings = "^2.4.0"
+python-jose = "^3.3.0"
+pydantic = {extras = ["email"], version = "^2.8.2"}
+
+
+[tool.poetry.group.dev.dependencies]
+python-dotenv = "^1.0.1"
+pytest = "^8.3.2"
+httpx = "^0.27.2"
+mypy = "^1.11.2"
+types-python-jose = "^3.3.4.20240106"
+flake8 = "^7.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
