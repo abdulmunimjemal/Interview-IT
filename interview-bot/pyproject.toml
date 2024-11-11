@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "interview-bot"
+version = "0.1.0"
+description = "The bot microservice for the interviewer"
+authors = ["Abdulmunim <66489217+abdulmunimjemal@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.115.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
