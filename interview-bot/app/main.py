@@ -1,7 +1,7 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.responses import FileResponse
 from app.models import AudioResponse
-from app.services import asr_service, llm_service, tts_service
+from app.services import asr, llm, tts
 from pathlib import Path
 import tempfile
 
@@ -19,10 +19,10 @@ async def converse(file: UploadFile = File(...)):
         tmp_audio_path = Path(tmp.name)
     
     # Step 1: Tramscribe the audio
-    transcription = await asr_service.transcribe(tmp_audio_path)
+    transcription = await asr.transcribe(tmp_audio_path)
     # Step 2: Generate the response
-    response_text = await llm_service.generate_response(transcription)
+    response_text = await llm.generate_response(transcription)
     # Step 3: Generate the audio response
-    audio_output_path = await tts_service.sythesize_audio(response_text)
+    audio_output_path = await tts.synthesize_audio(response_text)
 
     return FileResponse(audio_output_path, media_type="audio/wav", filename="response.wav")
