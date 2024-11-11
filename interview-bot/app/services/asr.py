@@ -1,12 +1,17 @@
-from faster_whisper import WhisperModel
-from pathlib import Path
+import speech_recognition as sr
 
-model_size = "small"
+async def transcribe(audio_path):
+  audio_path = str(audio_path)
+  print("AUDIO PATH",audio_path)
+  r = sr.Recognizer()
 
-model = WhisperModel(model_size)
+  with sr.AudioFile(audio_path) as source:
+    audio_data = r.record(source)
 
-async def transcribe(audio_path: Path) -> str:
-    _segments, _ = model.transcribe(audio_path)
-    segments = list(segments)
-    transcription = " ".join([segment["text"] for segment in segments])
-    return transcription
+  try:
+    text = r.recognize_google(audio_data)
+    return text
+  except sr.UnknownValueError:
+    print("Google Speech Recognition could not understand audio")
+  except sr.RequestError as e:
+    print("Could not request results from Google Speech Recognition service; {0}".format(e))
